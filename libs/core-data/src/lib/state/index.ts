@@ -1,13 +1,18 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromCustomers from './customers/customers.reducer';
+import * as fromProjects from './projects/projects.reducer'
 
+// Update the shape of the entire application state
 export interface AppState {
-  customers: fromCustomers.CustomersState
+  customers: fromCustomers.CustomersState,
+  projects: fromProjects.ProjectsState
 }
 
+// Add in the feature reducer into a combined reducer
 export const reducers: ActionReducerMap<AppState> = {
-  customers: fromCustomers.customersReducer
+  customers: fromCustomers.customersReducer,
+  projects: fromProjects.projectsReducers
 };
 
 // -------------------------------------------------------------------
@@ -19,5 +24,3 @@ export const selectAllCustomers = createSelector(
   selectCustomersState,
   fromCustomers.selectAllCustomers
 );
-
-
